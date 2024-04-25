@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSearch()" class="flex gap-4 py-4">
+  <input
+    name="newSearchQuery"
+    type="text"
+    placeholder="Search here"
+    [(ngModel)]="newSearchQuery"
+    class="outline outline-1 px-4 py-2 rounded-lg"
+    required
+
+  />
+  <button type="submit" class="bg-blue-800 text-white  px-4 py-2 rounded-lg">Search</button>
+</form>

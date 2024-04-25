@@ -1,0 +1,4 @@
+<div class="p-7">
+    <app-search (searchQuery)="onSearchQuery($event)"></app-search>
+    <app-results [results]="allData?.meals" [query]="searchQ"></app-results>
+</div>

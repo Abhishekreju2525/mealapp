@@ -1,0 +1,38 @@
+<h2 class="font-medium text-3xl">Results for '{{ query }}'</h2>
+<div *ngIf="results" class="flex flex-col gap-4 p-2">
+  
+  <!-- <pre>{{ results | json }}</pre> -->
+  <div *ngFor="let item of results; let i = index">
+    <hr class="my-2" />
+    <div>
+      <!-- <h3>Item {{ i + 1 }}</h3> -->
+      <h2 class="text-2xl my-7">#{{ item.idMeal }} : {{ item.strMeal }}</h2>
+      <div class="grid grid-cols-3 mt-3">
+        <div>
+          <img src="{{ item.strMealThumb }}" style="max-height: 200px" alt="" />
+        </div>
+
+        <div>
+          <h3 class="underline font-medium text-lg">Ingredients</h3>
+          <ul class="text-sm">
+            <ng-container *ngFor="let obj of item | keyvalue">
+              <li
+                *ngIf="isObjectWithKey(obj.key, 'strIngredient') && obj.value"
+              >
+                {{ obj.value.toString() }}:
+                {{ item["strMeasure" + getIndex(obj.key)] }}
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+        <div>
+          <h3 class="underline font-medium text-lg">Instructions</h3>
+          <p class="instruction">{{ item.strInstructions }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="results == null">
+  <p class="my-4">No items found</p>
+</div>
